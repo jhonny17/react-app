@@ -1,0 +1,14 @@
+@forward 'constants';
+@forward 'themes';
+
+* {
+  color: hsl(var(--text-color));
+  font-family: var(--font-family);
+
+  // Animation when theme is changed
+  transition: color 0.5s ease-in, background-color 0.5s ease-in;
+}
+
+body {
+  background-color: hsl(var(--background-color));
+}
