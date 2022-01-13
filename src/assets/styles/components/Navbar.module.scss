@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+
+  bottom: 0;
+  width: 100%;
+  padding: 0.5em;
+  position: fixed;
+  box-shadow: 0px 5px 5px 7px hsl(var(--navbar-background-color));
+
+  background-color: hsl(var(--navbar-background-color));
+
+  *,
+  & * {
+    color: hsl(var(--navbar-text-color));
+  }
+
+  .navbar-logo-container,
+  .navbar-main-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo-container {
+    .logo {
+      width: 3em;
+      padding: 0.3em;
+    }
+  }
+
+  .navbar-main-container {
+    margin-left: auto;
+  }
+}

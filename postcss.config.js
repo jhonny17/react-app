@@ -1,8 +1,4 @@
-module.exports = (ctx) => {
-  const { env } = ctx;
-
-  console.log('\nPostCSS', { env });
-
+module.exports = (/*ctx*/) => {
   return {
     plugins: [require('autoprefixer')],
   };

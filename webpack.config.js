@@ -8,14 +8,14 @@ const envFunctions = require('./webpack/env.config');
 const { getEnvConfig } = envFunctions;
 
 module.exports = (env) => {
-  // Getting the enviroment
+  // Getting the environment
   const { isProduction } = env;
   const mode = isProduction ? 'production' : 'development';
 
-  // Printing in the console the enviroment
-  console.log('Webpack', { mode });
+  // Printing in the console the environment
+  console.log('Webpack', { mode }, '\n');
 
-  // Getting enviroment configs
+  // Getting environment configs
   const envConfig = getEnvConfig(isProduction);
 
   return {
@@ -43,22 +43,39 @@ module.exports = (env) => {
       new webpack.ProgressPlugin(),
     ],
     resolve: {
-      extensions: ['.ts', '.tsx', '.js'],
+      extensions: ['.ts', '.tsx', '.js', '.scss'],
     },
     module: {
       rules: [
         { test: /\.tsx?$/, loader: 'ts-loader' },
         {
           test: /\.s[ac]ss$/i,
-          use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                importLoaders: 2,
+                modules: {
+                  localIdentName: isProduction
+                    ? '[hash:base64]'
+                    : '[local]_[name]_[hash]',
+                },
+              },
+            },
+            'postcss-loader',
+            'sass-loader',
+          ],
         },
         {
-          test: /\.(png|jpe?g|gif)$/i,
+          test: /\.(png|jpe?g|gif|svg)$/i,
           loader: 'file-loader',
           options: {
             outputPath: (url, resourcePath, context) => {
               // Output for the images
-              if (/\.(png|jpe?g|gif)$/i.test(url)) return 'assets/images';
+              if (/\.(png|jpe?g|gif|svg)$/i.test(url))
+                return `assets/images/${url}`;
 
               // Default output
               return undefined;

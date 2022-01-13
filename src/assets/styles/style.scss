@@ -2,11 +2,15 @@
 @forward 'themes';
 
 * {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
   color: hsl(var(--text-color));
   font-family: var(--font-family);
 
   // Animation when theme is changed
-  transition: color 0.5s ease-in, background-color 0.5s ease-in;
+  transition: color 0.5s ease-in, box-shadow 0.5s ease-in,
+    background-color 0.5s ease-in;
 }
 
 body {
