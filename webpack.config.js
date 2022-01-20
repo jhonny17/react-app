@@ -23,10 +23,11 @@ module.exports = (env) => {
     entry: {
       app: path.resolve(__dirname, 'src'),
     },
+    devtool: 'inline-source-map',
     output: {
       clean: true,
+      publicPath: '/',
       asyncChunks: true,
-      publicPath: 'auto',
       filename: '[name].bundle.[id].js',
       chunkFilename: '[name].chunk.[id].js',
       path: path.resolve(__dirname, 'build'),
@@ -74,8 +75,7 @@ module.exports = (env) => {
           options: {
             outputPath: (url, resourcePath, context) => {
               // Output for the images
-              if (/\.(png|jpe?g|gif|svg)$/i.test(url))
-                return `assets/images/${url}`;
+              if (/\.(png|jpe?g|gif|svg)$/i.test(url)) return `assets/images/${url}`;
 
               // Default output
               return undefined;

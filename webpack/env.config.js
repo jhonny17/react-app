@@ -5,6 +5,9 @@ const path = require('path');
 const devServer = {
   hot: true,
   open: true,
+  historyApiFallback: {
+    index: '/',
+  },
   port: 3000,
   static: {
     directory: path.resolve(__dirname, 'build'),
@@ -15,12 +18,12 @@ const devServer = {
 };
 
 const getEnvConfig = (isProduction) => {
-  let config = {};
+  const config = {};
 
   // if (isProduction) {}
 
   if (!isProduction) {
-    config = { ...config, devServer };
+    return { ...config, devServer };
   }
 
   return config;
