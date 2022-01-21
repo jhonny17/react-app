@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { navbarItems } from '../configs/navigation';
+import { navbarItems } from '../navigation/app/navigation';
 import NavItem from '../types/NavItem';
 import useWindowSizes from './useWindowSizes';
 

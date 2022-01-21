@@ -5,7 +5,7 @@ import navbarCss from '../assets/styles/components/Navbar.module.scss';
 
 import logo from '../assets/images/icon.svg';
 import useNavbarItems from '../hooks/useNavbarItems';
-import { ROOT_PAGE } from '../configs/navigation-link';
+import { ROOT_PAGE } from '../navigation/app/navigation-link';
 
 const {
   navbar,

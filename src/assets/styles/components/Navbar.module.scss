@@ -1,4 +1,5 @@
 @use '../mixins/theme' as theme;
+@use '../mixins/spacing' as spacing;
 @use '../mixins/media.query' as mediaQuery;
 
 nav.navbar {
@@ -45,15 +46,12 @@ nav.navbar {
 
   div.navbar-logo-container,
   div.navbar-main-container {
-    display: flex;
-    align-items: center;
+    @include spacing.flex-center(y);
   }
 
   div.navbar-logo-container {
     a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include spacing.flex-center;
 
       img.logo {
         width: 3em;
@@ -78,9 +76,8 @@ nav.navbar {
         a.nav-link {
           height: 100%;
           padding: 0.5em;
-          display: flex;
           user-select: none;
-          align-items: center;
+          @include spacing.flex-center(y);
         }
 
         &.active {
