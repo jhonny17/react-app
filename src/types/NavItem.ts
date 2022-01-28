@@ -1,4 +1,4 @@
-import { Icon } from '@primer/octicons-react';
+import Icon from './Icons';
 
 type NavItem = {
   id: string | number;

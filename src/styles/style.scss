@@ -1,6 +1,8 @@
 @forward 'constants';
 @forward 'themes';
 
+@use './mixins/animation' as animation;
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -9,8 +11,7 @@
   font-family: var(--font-family);
 
   // Animation when theme is changed
-  transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out,
-    background-color 0.5s ease-in-out;
+  @include animation.transition-smooth(color, background-color);
 }
 
 body {

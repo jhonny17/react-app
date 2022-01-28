@@ -1,0 +1,172 @@
+@use '../mixins/theme' as theme;
+@use '../mixins/spacing' as spacing;
+@use '../mixins/media.query' as mediaQuery;
+@use '../mixins/animation' as animation;
+
+nav.navbar {
+  /*** Custom properties ***/
+
+  --text-color: var(--gray-100);
+  --logo-color: var(--white);
+  --background-color-hs: var(--primary-h) var(--primary-s);
+  --background-color-l: var(--primary-l);
+  --active-text-color: var(--text-color);
+
+  --background-color: var(--background-color-hs) var(--background-color-l);
+
+  @include theme.theme('dark') {
+    --background-color-hs: var(--gray-h) var(--gray-s);
+    --background-color-l: var(--gray-900-l);
+    --active-text-color: var(--primary-h) var(--primary-s)
+      calc(var(--background-color-l) + 60%);
+    --logo-color: var(--primary-h) var(--primary-s) calc(var(--background-color-l) + 60%);
+  }
+
+  --hover-background-color: hsl(
+    var(--background-color-hs) calc(var(--background-color-l) - 9%)
+  );
+
+  /*** Rule definition ***/
+
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  background-color: hsl(var(--background-color));
+  box-shadow: 0px 5px 5px 7px hsl(var(--background-color));
+
+  @include animation.transition-smooth(box-shadow, background-color);
+
+  @include mediaQuery.monitor {
+    top: 0;
+    bottom: unset;
+    box-shadow: 0px -5px 5px 7px hsl(var(--background-color));
+  }
+
+  & * {
+    color: hsl(var(--text-color));
+  }
+
+  a {
+    height: 100%;
+    text-decoration: none;
+
+    @include animation.transition-smooth(color);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      background-color: var(--hover-background-color);
+
+      @include mediaQuery.monitor {
+        background-color: hsl(var(--background-color));
+      }
+    }
+  }
+
+  div.navbar-logo-container,
+  div.navbar-main-container {
+    @include spacing.flex-center(y);
+  }
+
+  div.navbar-logo-container {
+    a {
+      @include spacing.flex-center;
+
+      .logo {
+        width: 3em;
+        padding: 0.3em;
+
+        circle {
+          @include animation.transition-smooth(fill);
+          fill: hsl(var(--logo-color));
+        }
+
+        g {
+          @include animation.transition-smooth(stroke);
+          stroke: hsl(var(--logo-color));
+        }
+      }
+    }
+  }
+
+  div.navbar-main-container {
+    margin-left: auto;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      list-style-type: none;
+
+      li.nav-item {
+        height: 100%;
+
+        @include mediaQuery.monitor {
+          position: relative;
+        }
+
+        a.nav-link {
+          height: 100%;
+          padding: 0.5em;
+          user-select: none;
+
+          @include spacing.flex-center(y);
+
+          @include mediaQuery.monitor {
+            font-size: 1em;
+            padding: 1em 0.8em;
+
+            &:hover {
+              font-weight: 700;
+            }
+
+            &::after {
+              top: 70%;
+              width: 65%;
+              left: 17.5%;
+              content: '';
+              position: absolute;
+              box-shadow: 0px 2px 0px 1px transparent;
+              @include animation.transition-smooth(box-shadow);
+            }
+          }
+
+          svg {
+            fill: hsl(var(--text-color));
+          }
+        }
+
+        &.active {
+          a.nav-link {
+            font-weight: 700;
+            color: hsl(var(--active-text-color));
+
+            background-color: hsl(
+              var(--background-color-hs) calc(var(--background-color-l) - 5%)
+            );
+
+            @include animation.transition-smooth(background-color);
+
+            @include mediaQuery.monitor {
+              background-color: hsl(var(--background-color));
+            }
+
+            @include mediaQuery.monitor {
+              &::after {
+                box-shadow: 0px 2px 0px 1px hsl(var(--active-text-color));
+              }
+            }
+
+            svg {
+              @include animation.transition-smooth(fill);
+              fill: hsl(var(--active-text-color));
+            }
+          }
+        }
+      }
+    }
+  }
+}

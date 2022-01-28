@@ -12,9 +12,6 @@ const devServer = {
   static: {
     directory: path.resolve(__dirname, 'build'),
   },
-  client: {
-    progress: true,
-  },
 };
 
 const getEnvConfig = (isProduction) => {
