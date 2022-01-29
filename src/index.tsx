@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import './assets/styles/style.scss';
+import './styles/style.scss';
 
 import App from './App';
 

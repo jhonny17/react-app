@@ -75,7 +75,7 @@ module.exports = (env) => {
           options: {
             outputPath: (url, resourcePath, context) => {
               // Output for the images
-              if (/\.(png|jpe?g|gif|svg)$/i.test(url)) return `assets/images/${url}`;
+              if (/\.(png|jpe?g|gif|svg)$/i.test(url)) return `images/${url}`;
 
               // Default output
               return undefined;
