@@ -1,0 +1,24 @@
+@forward 'constants';
+@forward 'themes';
+
+@use './mixins/animation' as animation;
+@use './mixins/media.query' as mediaQuery;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: hsl(var(--text-color));
+  font-family: var(--font-family);
+
+  // Animation when theme is changed
+  @include animation.transition-smooth(color, background-color);
+}
+
+body {
+  background-color: hsl(var(--background-color));
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
