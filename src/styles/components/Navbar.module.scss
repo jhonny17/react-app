@@ -3,7 +3,7 @@
 @use '../mixins/media.query' as mediaQuery;
 @use '../mixins/animation' as animation;
 
-nav.navbar {
+.navbar {
   /*** Custom properties ***/
 
   --text-color: var(--gray-100);

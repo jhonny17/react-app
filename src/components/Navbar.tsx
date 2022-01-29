@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 import LogoIcon from '../icons/LogoIcon';
@@ -23,17 +23,37 @@ const {
 const Navbar = () => {
   const { pathname } = useLocation();
   const { isMonitor } = useWindowSizes();
-  const logoContainerRef = createRef<HTMLDivElement>();
+  const navbarRef = useRef<HTMLElement>(null);
+  const logoContainerRef = useRef<HTMLDivElement>(null);
   const { unavailableWidth, setUnavailableWidth, visibleNavbarItems } = useNavbarItems();
 
-  useEffect(() => {
+  const beforeSetUnavailableWidth = () => {
     const newUnavailableWidth = logoContainerRef.current?.clientWidth ?? 0;
     if (unavailableWidth === newUnavailableWidth) return;
     setUnavailableWidth(newUnavailableWidth);
+  };
+
+  const setBodyPadding = () => {
+    const bodyTag = document.getElementsByTagName('body')[0];
+
+    const newNavbarHeight = isMonitor
+      ? `${(navbarRef.current?.clientHeight ?? 0) + 10}px`
+      : '';
+
+    if (bodyTag.style.paddingTop === newNavbarHeight) return;
+    bodyTag.style.paddingTop = newNavbarHeight;
+  };
+
+  useEffect(() => {
+    beforeSetUnavailableWidth();
   }, []);
 
+  useEffect(() => {
+    setBodyPadding();
+  });
+
   return (
-    <nav className={navbar}>
+    <nav className={navbar} ref={navbarRef}>
       <div className={navbarLogoContainerClassName} ref={logoContainerRef}>
         <Link to={ROOT_PAGE}>
           <LogoIcon size={35} className={logoClassName} />
