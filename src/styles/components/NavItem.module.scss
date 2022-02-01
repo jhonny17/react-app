@@ -1,0 +1,72 @@
+@use '../mixins/spacing' as spacing;
+@use '../mixins/animation' as animation;
+@use '../mixins/media.query' as mediaQuery;
+
+li.nav-item {
+  height: 100%;
+
+  @include mediaQuery.monitor {
+    position: relative;
+  }
+
+  a.nav-link {
+    height: 100%;
+    padding: 0.5em;
+    user-select: none;
+
+    @include spacing.flex-center(y);
+
+    @include animation.transition-smooth-out(font-weight);
+
+    @include mediaQuery.monitor {
+      font-size: 1em;
+      padding: 1em 0.8em;
+
+      &:hover {
+        font-weight: 700;
+      }
+
+      &::after {
+        top: 70%;
+        width: 65%;
+        left: 17.5%;
+        content: '';
+        position: absolute;
+        box-shadow: 0px 2px 0px 1px transparent;
+        @include animation.transition-smooth(box-shadow);
+      }
+    }
+
+    svg {
+      fill: hsl(var(--text-color));
+    }
+  }
+
+  &.active {
+    a.nav-link {
+      font-weight: 700;
+      color: hsl(var(--active-text-color));
+
+      background-color: hsl(
+        var(--background-color-hs) calc(var(--background-color-l) - 5%)
+      );
+
+      @include animation.transition-smooth(background-color);
+
+      @include mediaQuery.monitor {
+        background-color: hsl(var(--background-color));
+      }
+
+      @include mediaQuery.monitor {
+        &::after {
+          box-shadow: 0px 2px 0px 1px hsl(var(--active-text-color));
+        }
+      }
+
+      svg {
+        @include animation.transition-smooth(fill);
+        fill: hsl(var(--active-text-color));
+      }
+    }
+  }
+}

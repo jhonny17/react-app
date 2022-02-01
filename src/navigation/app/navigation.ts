@@ -1,5 +1,6 @@
 import NavItem from '../../types/NavItem';
 import { ROOT_PAGE, STORE_PAGE } from './navigation-link';
+import { ReactComponent as HomeIcon2 } from '../../icons/HomeIcon.svg';
 
 import HomeIcon from '../../icons/HomeIcon';
 import StoreIcon from '../../icons/StoreIcon';

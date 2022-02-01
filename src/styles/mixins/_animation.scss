@@ -9,3 +9,15 @@
 
   transition: $props;
 }
+
+@mixin transition-smooth-out($properties...) {
+  $props: ();
+  $duration: unquote('0.5s');
+  $effect: unquote('ease-out');
+
+  @each $property in $properties {
+    $props: append($props, $property $duration $effect, comma);
+  }
+
+  transition: $props;
+}
