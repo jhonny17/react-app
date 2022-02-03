@@ -1,0 +1,22 @@
+@mixin button-format($hue, $saturation, $lightness, $text-color: null) {
+  --button-text-color: hsl(var(--white));
+  --button-color: var(#{$hue}) var(#{$saturation}) var(#{$lightness});
+
+  @if ($text-color != null) {
+    --button-text-color: #{$text-color};
+  }
+
+  border: none;
+  padding: 0.5em;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 1em;
+  color: var(--button-text-color);
+  background-color: hsl(var(--button-color));
+
+  &:active {
+    outline: 2px solid hsl(var(--button-color));
+    box-shadow: 0px 0px 6px 4px hsl(var(--button-color));
+    background-color: hsl(var(#{$hue}) var(#{$saturation}) calc(var(#{$lightness}) + 5%));
+  }
+}

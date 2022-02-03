@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const envFunctions = require('./webpack/env.config');
-const { getEnvConfig } = envFunctions;
+const { getEnvConfig, getEnvVariables } = envFunctions;
 
 module.exports = (env) => {
   // Getting the environment
@@ -14,6 +14,9 @@ module.exports = (env) => {
 
   // Printing in the console the environment
   console.log('Webpack', { mode }, '\n');
+
+  // Getting environment variables
+  const envVariables = getEnvVariables(mode);
 
   // Getting environment configs
   const envConfig = getEnvConfig(isProduction);
@@ -33,6 +36,7 @@ module.exports = (env) => {
       path: path.resolve(__dirname, 'build'),
     },
     plugins: [
+      new webpack.DefinePlugin(envVariables),
       new HtmlWebpackPlugin({
         minify: isProduction === true,
         template: './src/index.html',

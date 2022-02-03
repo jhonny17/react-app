@@ -4,13 +4,14 @@ import { Routes } from 'react-router-dom';
 
 import { ROOT_PAGE, STORE_PAGE } from './navigation-link';
 
-const A = () => <>App</>;
+import Login from '../../components/Login';
+
 const B = () => <>Store</>;
 const NotFound = () => <>Not Found</>;
 
 const AppRoutes = () => (
   <Routes>
-    <Route path={ROOT_PAGE} element={<A />} />
+    <Route path={ROOT_PAGE} element={<Login />} />
     <Route path={STORE_PAGE} element={<B />} />
     <Route path="*" element={<NotFound />} />
   </Routes>

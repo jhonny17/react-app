@@ -13,6 +13,13 @@
 
   // Animation when theme is changed
   @include animation.transition-smooth(color, background-color);
+
+  ::selection {
+    --background-color: var(--primary-h) var(--primary-s) calc(var(--primary-l) + 13%);
+
+    color: hsl(var(--white));
+    background-color: hsl(var(--background-color));
+  }
 }
 
 body {

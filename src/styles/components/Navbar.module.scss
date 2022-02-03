@@ -14,7 +14,7 @@
 
   --background-color: var(--background-color-hs) var(--background-color-l);
 
-  @include theme.theme('dark') {
+  @include theme.isTheme(dark) {
     --background-color-hs: var(--gray-h) var(--gray-s);
     --background-color-l: var(--gray-900-l);
     --active-text-color: var(--primary-h) var(--primary-s)

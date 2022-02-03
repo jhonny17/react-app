@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const dotenv = require('dotenv');
 
 // Development server config
 const devServer = {
@@ -26,6 +27,23 @@ const getEnvConfig = (isProduction) => {
   return config;
 };
 
+const getEnvVariables = (mode) => {
+  const envResult = dotenv.config({
+    path: path.resolve(__dirname, '..', `.${mode}.env`),
+  });
+
+  if (envResult.error) throw envResult.error;
+
+  const envVariables = {};
+
+  Object.keys(envResult.parsed).map((key) => {
+    envVariables[`process.env.${key}`] = envResult.parsed[key];
+  });
+
+  return envVariables;
+};
+
 module.exports = {
   getEnvConfig,
+  getEnvVariables,
 };

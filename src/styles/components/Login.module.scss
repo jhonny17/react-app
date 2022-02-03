@@ -1,0 +1,21 @@
+@use '../mixins/theme' as theme;
+@use '../mixins/spacing' as spacing;
+
+div.login {
+  height: 85vh;
+  @include spacing.flex-center;
+
+  div.login-card {
+    width: 80%;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 0.5em;
+
+    svg {
+      padding: 1em;
+      margin-bottom: 3em;
+      border-radius: 50%;
+      border: 5px solid hsl(var(--primary));
+    }
+  }
+}

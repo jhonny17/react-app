@@ -1,0 +1,21 @@
+@use '../mixins/input' as inputs;
+@use '../mixins/button' as buttons;
+
+form.login-form {
+  display: grid;
+
+  input[type='email'],
+  input[type='password'] {
+    @include inputs.form-input;
+
+    text-align: center;
+  }
+
+  > :not(:last-child) {
+    margin-bottom: 1.5em;
+  }
+
+  button[type='submit'] {
+    @include buttons.button-format(--primary-h, --primary-s, --primary-l);
+  }
+}
