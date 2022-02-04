@@ -11,7 +11,7 @@ const Login = () => (
   <div className={loginClassName}>
     <div className={loginCardClassName}>
       <LogoIcon size={150} />
-      <LoginForm />
+      <LoginForm isUserSigningUp={false} />
     </div>
   </div>
 );

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import PublicGlobalProvider from './contexts/PublicGlobal';
+import AuthProvider from './contexts/AuthContext';
 
 import AppRoutes from './navigation/app/routes';
 
 const App = () => (
-  <PublicGlobalProvider>
+  <AuthProvider>
     <AppRoutes />
-  </PublicGlobalProvider>
+  </AuthProvider>
 );
 
 export default App;

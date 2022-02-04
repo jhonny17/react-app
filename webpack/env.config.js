@@ -27,6 +27,12 @@ const getEnvConfig = (isProduction) => {
   return config;
 };
 
+const getTypedEnvValue = (value) => {
+  if (/^-?[0-9]+(\.[0-9]+)?$/.test(value)) return +value;
+  if (value === 'true' || value === 'false') return value === 'true';
+  return JSON.stringify(value);
+};
+
 const getEnvVariables = (mode) => {
   const envResult = dotenv.config({
     path: path.resolve(__dirname, '..', `.${mode}.env`),
@@ -37,7 +43,8 @@ const getEnvVariables = (mode) => {
   const envVariables = {};
 
   Object.keys(envResult.parsed).map((key) => {
-    envVariables[`process.env.${key}`] = envResult.parsed[key];
+    const value = getTypedEnvValue(envResult.parsed[key]);
+    envVariables[`process.env.${key}`] = value;
   });
 
   return envVariables;

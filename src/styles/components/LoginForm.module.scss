@@ -4,18 +4,27 @@
 form.login-form {
   display: grid;
 
+  > :not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+
   input[type='email'],
   input[type='password'] {
     @include inputs.form-input;
 
     text-align: center;
+    margin-bottom: 1.5em;
   }
 
-  > :not(:last-child) {
-    margin-bottom: 1.5em;
+  .reduced-bottom {
+    margin-bottom: 0.5em !important;
   }
 
   button[type='submit'] {
     @include buttons.button-format(--primary-h, --primary-s, --primary-l);
+  }
+
+  button {
+    @include buttons.button-format(--gray-h, --gray-s, --gray-800-l);
   }
 }
