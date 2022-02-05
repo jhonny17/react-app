@@ -1,7 +1,10 @@
 import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import loginFormStyle from '../styles/components/LoginForm.module.scss';
 import { useAuthContext } from '../contexts/AuthContext';
+
+import { ROOT_PAGE, LOG_IN_PAGE, SIGN_UP_PAGE } from '../navigation/app/navigation-link';
 
 const { 'login-form': loginFormClassName, 'reduced-bottom': reducedBottomClassName } =
   loginFormStyle;
@@ -19,7 +22,9 @@ type LoginForm = {
 };
 
 const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
-  const { signUpUser, logInUser } = useAuthContext();
+  const navigate = useNavigate();
+  const { currentUser, signUp, logIn } = useAuthContext();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
@@ -29,16 +34,13 @@ const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
 
   useEffect(() => {
     if (!passwordRef.current || !passwordConfirmationRef.current) return;
-    if (password === passwordConfirmation) return;
-    passwordRef.current.setCustomValidity(
-      'Your Password and Confirmation password do not match'
-    );
-  });
 
-  useEffect(() => {
-    if (!passwordRef.current || !passwordConfirmationRef.current) return;
-    if (password !== passwordConfirmation) return;
-    passwordRef.current.setCustomValidity('');
+    const message =
+      password !== passwordConfirmation
+        ? 'Your Password and Confirmation password do not match'
+        : '';
+
+    passwordRef.current.setCustomValidity(message);
   }, [password, passwordConfirmation]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -46,11 +48,17 @@ const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
     event.stopPropagation();
 
     if (isUserSigningUp) {
-      signUpUser?.(email, password);
+      signUp?.(email, password);
       return;
     }
 
-    logInUser?.(email, password);
+    logIn?.(email, password);
+  };
+
+  if (currentUser) return <Navigate to={ROOT_PAGE} />;
+
+  const navigateTo = () => {
+    navigate(isUserSigningUp ? LOG_IN_PAGE : SIGN_UP_PAGE);
   };
 
   return (
@@ -93,7 +101,9 @@ const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
         />
       ) : null}
       <button type="submit">{isUserSigningUp ? 'Sign up' : 'Log in'}</button>
-      <button>{!isUserSigningUp ? 'Sign up' : 'Log in'}</button>
+      <button onClick={() => navigateTo()}>
+        {!isUserSigningUp ? 'Sign up' : 'Log in'}
+      </button>
     </form>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, MouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import navItemStyle from '../styles/components/NavItem.module.scss';
@@ -6,6 +6,7 @@ import navItemStyle from '../styles/components/NavItem.module.scss';
 import NavItem from '../types/NavItem';
 
 import useWindowSizes from '../hooks/useWindowSizes';
+import { ROOT_PAGE } from '../navigation/app/navigation-link';
 
 const {
   'nav-item': navItemClassName,
@@ -13,7 +14,7 @@ const {
   active: activeNavItemClassName,
 } = navItemStyle;
 
-const NavItem: FC<NavItem> = ({ id, display, url, icon: Icon }: NavItem) => {
+const NavItem: FC<NavItem> = ({ id, display, url, icon: Icon, onClick }: NavItem) => {
   const { pathname } = useLocation();
   const { isMonitor } = useWindowSizes();
   const [className, setClassName] = useState<string>(navItemClassName);
@@ -29,10 +30,17 @@ const NavItem: FC<NavItem> = ({ id, display, url, icon: Icon }: NavItem) => {
     setClassName(newClassName);
   }, [url, pathname]);
 
+  const innerOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (typeof onClick !== 'function') return;
+    event.preventDefault();
+    event.stopPropagation();
+    onClick();
+  };
+
   return (
     <li key={id} className={className} title={display}>
-      <Link to={url} className={navLinkClassName}>
-        {Icon ? isMonitor ? display : <Icon size={35} /> : null}
+      <Link to={url ?? ROOT_PAGE} onClick={innerOnClick} className={navLinkClassName}>
+        {isMonitor ? display : Icon ? <Icon size={35} /> : null}
       </Link>
     </li>
   );

@@ -10,6 +10,7 @@ import LogoIcon from '../icons/LogoIcon';
 
 import useNavbarItems from '../hooks/useNavbarItems';
 import useWindowSizes from '../hooks/useWindowSizes';
+import { useAuthContext } from '../contexts/AuthContext';
 
 const {
   navbar,
@@ -19,6 +20,7 @@ const {
 } = navbarStyle;
 
 const Navbar = () => {
+  const { logOut } = useAuthContext();
   const { isMonitor } = useWindowSizes();
   const navbarRef = useRef<HTMLElement>(null);
   const logoContainerRef = useRef<HTMLDivElement>(null);
@@ -61,6 +63,7 @@ const Navbar = () => {
           {visibleNavbarItems.map((navItemProps) => (
             <NavItem key={navItemProps.id} {...navItemProps} />
           ))}
+          <NavItem id={'logout'} display={'Log out'} onClick={logOut} />
         </ul>
       </div>
     </nav>

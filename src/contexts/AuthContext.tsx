@@ -8,26 +8,37 @@ import React, {
 } from 'react';
 
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   User,
+  signOut,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
+
 import { auth } from '../firebase.config';
+
+// Types
 
 type AuthContextState = {
   loading: boolean;
   currentUser?: User;
-  logInUser?: (email: string, password: string) => Promise<void>;
-  signUpUser?: (email: string, password: string) => Promise<void>;
+  logOut?: () => Promise<void>;
+  resetPassword?: (email: string) => Promise<void>;
+  logIn?: (email: string, password: string) => Promise<void>;
+  signUp?: (email: string, password: string) => Promise<void>;
 };
 
 type AuthProviderProps = {
   children: ReactChild;
 };
 
+// Context
+
 const AuthContext = createContext<AuthContextState>({ loading: true });
 
 export const useAuthContext = () => useContext(AuthContext);
+
+// Provider
 
 const AuthProvider: FC<AuthProviderProps> = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -42,15 +53,33 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }: AuthProviderProps) =>
     return unsubscribe;
   }, []);
 
-  const signUpUser = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string) => {
+    setLoading(true);
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const logInUser = async (email: string, password: string) => {
+  const logIn = async (email: string, password: string) => {
+    setLoading(true);
     await signInWithEmailAndPassword(auth, email, password);
   };
 
-  const authProviderValue = { currentUser, signUpUser, logInUser, loading };
+  const logOut = async () => {
+    setLoading(true);
+    await signOut(auth);
+  };
+
+  const resetPassword = async (email: string) => {
+    await sendPasswordResetEmail(auth, email);
+  };
+
+  const authProviderValue = {
+    currentUser,
+    signUp,
+    logIn,
+    logOut,
+    resetPassword,
+    loading,
+  };
 
   return (
     <AuthContext.Provider value={authProviderValue}>{children}</AuthContext.Provider>
