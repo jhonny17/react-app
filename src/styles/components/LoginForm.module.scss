@@ -1,5 +1,6 @@
 @use '../mixins/input' as inputs;
 @use '../mixins/button' as buttons;
+@use '../mixins/spacing' as spacing;
 
 form.login-form {
   display: grid;
@@ -26,5 +27,15 @@ form.login-form {
 
   button {
     @include buttons.button-format(--gray-h, --gray-s, --gray-800-l);
+  }
+
+  button.google {
+    @include spacing.flex-center;
+    @include buttons.button-format(--google-h, --google-s, --google-l);
+
+    svg {
+      margin-left: 0.5em;
+      fill: hsl(var(--white));
+    }
   }
 }

@@ -14,3 +14,4 @@ export default Icon;
 export type LogoIcon = Icon;
 export type HomeIcon = Icon;
 export type StoreIcon = Icon;
+export type GoogleIcon = Icon;

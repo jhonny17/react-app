@@ -29,6 +29,11 @@ $gray-scale: (
   --gray-h: 0;
   --gray-s: 0%;
 
+  --google-h: 5;
+  --google-s: 70%;
+  --google-l: 57%;
+  --google: var(--google-h) var(--google-s) var(--google-l);
+
   @each $name, $lightness in $gray-scale {
     --#{$name}-l: #{$lightness};
     --#{$name}: var(--gray-h) var(--gray-s) var(--#{$name}-l);

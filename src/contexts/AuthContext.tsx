@@ -13,6 +13,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 
 import { auth } from '../firebase.config';
@@ -23,9 +25,10 @@ type AuthContextState = {
   loading: boolean;
   currentUser?: User;
   logOut?: () => Promise<void>;
+  logInWithGoogle?: () => Promise<void>;
   resetPassword?: (email: string) => Promise<void>;
-  logIn?: (email: string, password: string) => Promise<void>;
-  signUp?: (email: string, password: string) => Promise<void>;
+  logInWithEmailAndPassword?: (email: string, password: string) => Promise<void>;
+  signUpWithEmailAndPassword?: (email: string, password: string) => Promise<void>;
 };
 
 type AuthProviderProps = {
@@ -53,14 +56,19 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }: AuthProviderProps) =>
     return unsubscribe;
   }, []);
 
-  const signUp = async (email: string, password: string) => {
+  const signUpWithEmailAndPassword = async (email: string, password: string) => {
     setLoading(true);
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const logIn = async (email: string, password: string) => {
+  const logInWithEmailAndPassword = async (email: string, password: string) => {
     setLoading(true);
     await signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
   };
 
   const logOut = async () => {
@@ -74,8 +82,9 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }: AuthProviderProps) =>
 
   const authProviderValue = {
     currentUser,
-    signUp,
-    logIn,
+    signUpWithEmailAndPassword,
+    logInWithEmailAndPassword,
+    logInWithGoogle,
     logOut,
     resetPassword,
     loading,

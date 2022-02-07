@@ -1,13 +1,17 @@
-import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FC, FormEvent, useEffect, useRef, useState, MouseEvent } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import loginFormStyle from '../styles/components/LoginForm.module.scss';
 import { useAuthContext } from '../contexts/AuthContext';
 
 import { ROOT_PAGE, LOG_IN_PAGE, SIGN_UP_PAGE } from '../navigation/app/navigation-link';
+import GoogleIcon from '../icons/GoogleIcon';
 
-const { 'login-form': loginFormClassName, 'reduced-bottom': reducedBottomClassName } =
-  loginFormStyle;
+const {
+  google: googleClassName,
+  'login-form': loginFormClassName,
+  'reduced-bottom': reducedBottomClassName,
+} = loginFormStyle;
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -23,7 +27,12 @@ type LoginForm = {
 
 const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
   const navigate = useNavigate();
-  const { currentUser, signUp, logIn } = useAuthContext();
+  const {
+    currentUser,
+    signUpWithEmailAndPassword,
+    logInWithEmailAndPassword,
+    logInWithGoogle,
+  } = useAuthContext();
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -48,18 +57,26 @@ const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
     event.stopPropagation();
 
     if (isUserSigningUp) {
-      signUp?.(email, password);
+      signUpWithEmailAndPassword?.(email, password);
       return;
     }
 
-    logIn?.(email, password);
+    logInWithEmailAndPassword?.(email, password);
+  };
+
+  const handleLoginWithGoogle = async (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    await logInWithGoogle?.();
+  };
+
+  const navigateTo = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    navigate(isUserSigningUp ? LOG_IN_PAGE : SIGN_UP_PAGE);
   };
 
   if (currentUser) return <Navigate to={ROOT_PAGE} />;
-
-  const navigateTo = () => {
-    navigate(isUserSigningUp ? LOG_IN_PAGE : SIGN_UP_PAGE);
-  };
 
   return (
     <form className={loginFormClassName} onSubmit={handleSubmit}>
@@ -101,9 +118,11 @@ const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
         />
       ) : null}
       <button type="submit">{isUserSigningUp ? 'Sign up' : 'Log in'}</button>
-      <button onClick={() => navigateTo()}>
-        {!isUserSigningUp ? 'Sign up' : 'Log in'}
+      <button className={googleClassName} onClick={handleLoginWithGoogle}>
+        {'Log in with Google'}
+        <GoogleIcon size={18} />
       </button>
+      <button onClick={navigateTo}>{!isUserSigningUp ? 'Sign up' : 'Log in'}</button>
     </form>
   );
 };
