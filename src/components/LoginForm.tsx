@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useEffect, useRef, useState, MouseEvent } from 'react';
+import React, { FormEvent, useEffect, useRef, useState, MouseEvent } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import loginFormStyle from '../styles/components/LoginForm.module.scss';
@@ -25,7 +25,7 @@ type LoginForm = {
   passwordConfirmation?: string;
 };
 
-const LoginForm: FC<LoginFormProps> = ({ isUserSigningUp }: LoginFormProps) => {
+const LoginForm = ({ isUserSigningUp }: LoginFormProps) => {
   const navigate = useNavigate();
   const {
     currentUser,

@@ -1,11 +1,4 @@
-import React, {
-  ReactChild,
-  createContext,
-  useContext,
-  FC,
-  useState,
-  useEffect,
-} from 'react';
+import React, { ReactChild, createContext, useContext, useState, useEffect } from 'react';
 
 import {
   User,
@@ -43,7 +36,7 @@ export const useAuthContext = () => useContext(AuthContext);
 
 // Provider
 
-const AuthProvider: FC<AuthProviderProps> = ({ children }: AuthProviderProps) => {
+const AuthProvider = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentUser, setCurrentUser] = useState<User>();
 

@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import LogoIcon from '../icons/LogoIcon';
+import React from 'react';
 
 import loginStyle from '../styles/components/Login.module.scss';
+import LogoIcon from '../icons/LogoIcon';
 
 import LoginForm from './LoginForm';
 
@@ -11,7 +11,7 @@ type LoginProps = {
   isUserSigningUp?: boolean;
 };
 
-const Login: FC<LoginProps> = ({ isUserSigningUp }: LoginProps) => (
+const Login = ({ isUserSigningUp }: LoginProps) => (
   <div className={loginClassName}>
     <div className={loginCardClassName}>
       <LogoIcon size={150} />

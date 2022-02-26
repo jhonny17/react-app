@@ -1,12 +1,12 @@
-import React, { FC, useState, useEffect, MouseEvent } from 'react';
+import React, { useState, useEffect, MouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import navItemStyle from '../styles/components/NavItem.module.scss';
 
-import NavItem from '../types/NavItem';
-
-import useWindowSizes from '../hooks/useWindowSizes';
 import { ROOT_PAGE } from '../navigation/app/navigation-link';
+
+import NavItem from '../types/NavItem';
+import useWindowSizes from '../hooks/useWindowSizes';
 
 const {
   'nav-item': navItemClassName,
@@ -14,7 +14,7 @@ const {
   active: activeNavItemClassName,
 } = navItemStyle;
 
-const NavItem: FC<NavItem> = ({ id, display, url, icon: Icon, onClick }: NavItem) => {
+const NavItem = ({ id, display, url, icon: Icon, onClick }: NavItem) => {
   const { pathname } = useLocation();
   const { isMonitor } = useWindowSizes();
   const [className, setClassName] = useState<string>(navItemClassName);
