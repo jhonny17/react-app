@@ -35,12 +35,13 @@ const Navbar = () => {
   const setBodyPadding = () => {
     const bodyTag = document.getElementsByTagName('body')[0];
 
-    const newNavbarHeight = isMonitor
-      ? `${(navbarRef.current?.clientHeight ?? 0) + 10}px`
-      : '';
+    const newNavbarHeight = `${(navbarRef.current?.clientHeight ?? 0) + 10}px`;
 
-    if (bodyTag.style.paddingTop === newNavbarHeight) return;
-    bodyTag.style.paddingTop = newNavbarHeight;
+    if (isMonitor && bodyTag.style.paddingTop === newNavbarHeight) return;
+    if (!isMonitor && bodyTag.style.paddingBottom === newNavbarHeight) return;
+
+    bodyTag.style.paddingTop = isMonitor ? newNavbarHeight : '';
+    bodyTag.style.paddingBottom = !isMonitor ? newNavbarHeight : '';
   };
 
   useEffect(() => {
