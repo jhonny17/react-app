@@ -6,7 +6,7 @@ import {
   UpdateData,
 } from 'firebase/firestore';
 
-import ICollectionWrap from '../interfaces/ICollectionWrap.firebase';
+import ICollectionWrap from 'firebase/interfaces/ICollectionWrap.firebase';
 
 interface IBaseRepository<T = DocumentData> {
   collectionWrap: ICollectionWrap<T>;

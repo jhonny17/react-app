@@ -1,7 +1,7 @@
-@use '../mixins/theme' as theme;
-@use '../mixins/spacing' as spacing;
-@use '../mixins/animation' as animation;
-@use '../mixins/media.query' as mediaQuery;
+@use 'styles/mixins/theme' as theme;
+@use 'styles/mixins/spacing' as spacing;
+@use 'styles/mixins/animation' as animation;
+@use 'styles/mixins/media.query' as mediaQuery;
 
 .navbar {
   /*** Custom properties ***/

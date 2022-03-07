@@ -1,16 +1,16 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import navbarStyle from '../styles/components/Navbar.module.scss';
+import navbarStyle from './Navbar.module.scss';
 
-import { ROOT_PAGE } from '../navigation/app/navigation-link';
+import { ROOT_PAGE } from 'navigation/app/navigation-link';
 
-import NavItem from './NavItem';
-import LogoIcon from '../icons/LogoIcon';
+import NavItem from 'components/NavItem';
+import LogoIcon from 'icons/LogoIcon';
 
-import useNavbarItems from '../hooks/useNavbarItems';
-import useWindowSizes from '../hooks/useWindowSizes';
-import { useAuthContext } from '../contexts/AuthContext';
+import useNavbarItems from 'hooks/useNavbarItems';
+import useWindowSizes from 'hooks/useWindowSizes';
+import { useAuthContext } from 'contexts/AuthContext';
 
 const {
   navbar,

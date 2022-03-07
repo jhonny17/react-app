@@ -48,7 +48,12 @@ module.exports = (env) => {
       new webpack.ProgressPlugin(),
     ],
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.scss'],
+      modules: [
+        path.resolve(__dirname, 'src'),
+        path.resolve(__dirname, 'src', 'assets'),
+        path.resolve(__dirname, 'node_modules'),
+      ],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
     },
     module: {
       rules: [
@@ -70,7 +75,14 @@ module.exports = (env) => {
               },
             },
             'postcss-loader',
-            'sass-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sassOptions: {
+                  includePaths: [path.resolve(__dirname, 'src', 'assets', 'styles')],
+                },
+              },
+            },
           ],
         },
         {

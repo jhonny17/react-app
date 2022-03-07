@@ -1,6 +1,6 @@
 import React from 'react';
-import useColors from '../hooks/useColors';
-import { LogoIcon, IconProps } from '../types/Icons';
+import useColors from 'hooks/useColors';
+import { LogoIcon, IconProps } from 'types/Icons';
 
 const LogoIcon: LogoIcon = ({ size, color, className }: IconProps) => {
   const { primary } = useColors();

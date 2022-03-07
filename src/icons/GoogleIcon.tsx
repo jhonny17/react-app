@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleIcon, IconProps } from '../types/Icons';
+import { GoogleIcon, IconProps } from 'types/Icons';
 
 const GoogleIcon: GoogleIcon = ({ size, color }: IconProps) => (
   <svg

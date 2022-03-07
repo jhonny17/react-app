@@ -1,6 +1,6 @@
-@use '../mixins/input' as inputs;
-@use '../mixins/button' as buttons;
-@use '../mixins/spacing' as spacing;
+@use 'styles/mixins/input' as inputs;
+@use 'styles/mixins/button' as buttons;
+@use 'styles/mixins/spacing' as spacing;
 
 form.login-form {
   display: grid;

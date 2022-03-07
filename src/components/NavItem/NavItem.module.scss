@@ -1,6 +1,6 @@
-@use '../mixins/spacing' as spacing;
-@use '../mixins/animation' as animation;
-@use '../mixins/media.query' as mediaQuery;
+@use 'styles/mixins/spacing' as spacing;
+@use 'styles/mixins/animation' as animation;
+@use 'styles/mixins/media.query' as mediaQuery;
 
 li.nav-item {
   height: 100%;

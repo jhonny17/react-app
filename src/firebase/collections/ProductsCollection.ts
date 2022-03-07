@@ -9,10 +9,21 @@ import {
   FirestoreDataConverter,
 } from 'firebase/firestore';
 
-import { db } from '../firebase.config';
+import { db } from 'firebase/firebase.config';
 
-import IRecord from '../interfaces/IRecord.firebase';
-import ICollectionWrap from '../interfaces/ICollectionWrap.firebase';
+import IRecord from 'firebase/interfaces/IRecord.firebase';
+import ICollectionWrap from 'firebase/interfaces/ICollectionWrap.firebase';
+
+type ProductConstructorParams = {
+  name: string;
+  description?: string;
+  price?: number;
+  stock?: number;
+  createdOn?: FieldValue;
+  createdBy?: string;
+  updatedOn?: FieldValue;
+  updatedBy?: string;
+};
 
 export class Product implements DocumentData, IRecord {
   public name: string;
@@ -27,14 +38,14 @@ export class Product implements DocumentData, IRecord {
 
   constructor({
     name,
-    description,
-    price,
-    stock,
+    description = '',
+    price = 0.0,
+    stock = 0.0,
     createdOn,
-    createdBy,
+    createdBy = '',
     updatedOn,
     updatedBy,
-  }: Product) {
+  }: ProductConstructorParams) {
     this.name = name;
     this.description = description;
     this.price = price;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeIcon, IconProps } from '../types/Icons';
+import { HomeIcon, IconProps } from 'types/Icons';
 
 const HomeIcon: HomeIcon = ({ size, color, className }: IconProps) => (
   <svg

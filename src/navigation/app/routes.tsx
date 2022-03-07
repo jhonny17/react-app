@@ -4,17 +4,16 @@ import { Routes } from 'react-router-dom';
 
 import { ROOT_PAGE, LOG_IN_PAGE, SIGN_UP_PAGE } from './navigation-link';
 
-import DefaultLayout from '../../components/DefaultLayout';
+import DefaultLayout from 'components/DefaultLayout';
+import ProductsView from 'components/ProductsView';
 
-const Login = lazy(() => import('../../components/Login'));
-const NotFound = lazy(() => import('../../components/NotFound'));
-
-const A = () => <>App</>;
+const Login = lazy(() => import('components/Login'));
+const NotFound = lazy(() => import('components/NotFound'));
 
 const AppRoutes = () => (
   <Routes>
     <Route path={ROOT_PAGE} element={<DefaultLayout />}>
-      <Route index element={<A />} />
+      <Route index element={<ProductsView />} />
       <Route
         path="*"
         element={

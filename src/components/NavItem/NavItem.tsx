@@ -1,12 +1,12 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import navItemStyle from '../styles/components/NavItem.module.scss';
+import navItemStyle from './NavItem.module.scss';
 
-import { ROOT_PAGE } from '../navigation/app/navigation-link';
+import { ROOT_PAGE } from 'navigation/app/navigation-link';
 
-import NavItem from '../types/NavItem';
-import useWindowSizes from '../hooks/useWindowSizes';
+import NavItem from 'types/NavItem';
+import useWindowSizes from 'hooks/useWindowSizes';
 
 const {
   'nav-item': navItemClassName,

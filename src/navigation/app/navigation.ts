@@ -1,8 +1,8 @@
-import NavItem from '../../types/NavItem';
+import NavItem from 'types/NavItem';
 import { ROOT_PAGE, STORE_PAGE } from './navigation-link';
 
-import HomeIcon from '../../icons/HomeIcon';
-import StoreIcon from '../../icons/StoreIcon';
+import HomeIcon from 'icons/HomeIcon';
+import StoreIcon from 'icons/StoreIcon';
 
 export const home: NavItem = {
   id: ROOT_PAGE,

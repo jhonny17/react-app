@@ -2,9 +2,12 @@
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "cSpell.words": [
     "classname",
+    "codepaths",
     "Firestore",
     "octicons",
     "postcss",
-    "svgr"
-  ]
+    "svgr",
+    "tsbuildinfo"
+  ],
+  "todo-tree.tree.scanMode": "workspace only"
 }

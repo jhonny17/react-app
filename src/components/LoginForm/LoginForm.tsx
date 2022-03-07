@@ -1,11 +1,11 @@
 import React, { FormEvent, useEffect, useRef, useState, MouseEvent } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import loginFormStyle from '../styles/components/LoginForm.module.scss';
-import { useAuthContext } from '../contexts/AuthContext';
+import loginFormStyle from './LoginForm.module.scss';
+import { useAuthContext } from 'contexts/AuthContext';
 
-import { ROOT_PAGE, LOG_IN_PAGE, SIGN_UP_PAGE } from '../navigation/app/navigation-link';
-import GoogleIcon from '../icons/GoogleIcon';
+import { ROOT_PAGE, LOG_IN_PAGE, SIGN_UP_PAGE } from 'navigation/app/navigation-link';
+import GoogleIcon from 'icons/GoogleIcon';
 
 const {
   google: googleClassName,

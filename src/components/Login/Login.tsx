@@ -1,9 +1,9 @@
 import React from 'react';
 
-import loginStyle from '../styles/components/Login.module.scss';
-import LogoIcon from '../icons/LogoIcon';
+import loginStyle from './Login.module.scss';
+import LogoIcon from 'icons/LogoIcon';
 
-import LoginForm from './LoginForm';
+import LoginForm from 'components/LoginForm';
 
 const { login: loginClassName, 'login-card': loginCardClassName } = loginStyle;
 

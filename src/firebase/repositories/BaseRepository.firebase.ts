@@ -10,9 +10,9 @@ import {
   UpdateData,
   updateDoc,
 } from 'firebase/firestore';
-import ICollectionWrap from '../interfaces/ICollectionWrap.firebase';
+import ICollectionWrap from 'firebase/interfaces/ICollectionWrap.firebase';
 
-import IBaseRepository from '../IRepositories/IBaseRepository.firebase';
+import IBaseRepository from 'firebase/IRepositories/IBaseRepository.firebase';
 
 class BaseRepository<T = DocumentData> implements IBaseRepository<T> {
   collectionWrap: ICollectionWrap<T>;

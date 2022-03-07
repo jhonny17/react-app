@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { LOG_IN_PAGE } from '../navigation/app/navigation-link';
+import { LOG_IN_PAGE } from 'navigation/app/navigation-link';
 
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from 'contexts/AuthContext';
 
 type PrivateRouteProps = {
   isOutlet?: boolean;

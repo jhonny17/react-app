@@ -23,9 +23,15 @@
 }
 
 body {
+  padding: 0.5em;
   background-color: hsl(var(--background-color));
 }
 
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+img,
+picture {
+  max-width: 100%;
 }

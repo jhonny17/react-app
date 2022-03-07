@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { navbarItems } from '../navigation/app/navigation';
-import NavItem from '../types/NavItem';
+import { navbarItems } from 'navigation/app/navigation';
+import NavItem from 'types/NavItem';
 import useWindowSizes from './useWindowSizes';
 
 const useNavbarItems = () => {

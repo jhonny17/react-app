@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoreIcon, IconProps } from '../types/Icons';
+import { StoreIcon, IconProps } from 'types/Icons';
 
 const StoreIcon: StoreIcon = ({ size, color, className }: IconProps) => (
   <svg
