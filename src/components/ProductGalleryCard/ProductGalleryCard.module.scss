@@ -1,0 +1,50 @@
+@use 'mixins/theme' as theme;
+
+.product-gallery-card {
+  --text-color: var(--white);
+  --product-name-color: var(--white);
+  --product-background-color: var(--primary);
+  --product-background-alpha: 0.92;
+
+  @include theme.isTheme(dark) {
+  }
+
+  gap: 0.5em;
+  display: grid;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5em;
+  // max-width: 10em;   // TODO: Max width is set when there aren't many items
+  justify-items: center;
+  outline: 1.2px solid var(--gray-900);
+  box-shadow: 0px 0px 5px 1px hsl(var(--gray-900));
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-information {
+    left: 0;
+    bottom: 0;
+    width: 85%;
+    position: absolute;
+    padding: 0.5em 0.2em 0.3em;
+    box-shadow: 0px 0px 5px 1px hsl(var(--black));
+    border-top-right-radius: 0.2em;
+    background-color: hsl(var(--product-background-color) / 0.92);
+
+    header {
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: hsl(var(--product-name-color));
+      }
+    }
+
+    .product-price {
+      font-size: 1.1rem;
+    }
+  }
+}
