@@ -1,13 +1,8 @@
-@use 'mixins/theme' as theme;
-
 .product-gallery-card {
   --text-color: var(--white);
   --product-name-color: var(--white);
   --product-background-color: var(--primary);
   --product-background-alpha: 0.92;
-
-  @include theme.isTheme(dark) {
-  }
 
   gap: 0.5em;
   display: grid;
@@ -31,8 +26,8 @@
     width: 85%;
     position: absolute;
     padding: 0.5em 0.2em 0.3em;
+    border-top-right-radius: 50%;
     box-shadow: 0px 0px 5px 1px hsl(var(--black));
-    border-top-right-radius: 0.2em;
     background-color: hsl(var(--product-background-color) / 0.92);
 
     header {

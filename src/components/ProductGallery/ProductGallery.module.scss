@@ -7,4 +7,11 @@
     text-align: center;
     grid-column: 2 span;
   }
+
+  & > :first-child {
+    &:not(.product-gallery-empty) {
+      grid-row: 2 span;
+      grid-column: 2 span;
+    }
+  }
 }
