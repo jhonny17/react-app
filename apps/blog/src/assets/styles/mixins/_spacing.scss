@@ -1,0 +1,9 @@
+@mixin flex-center($direction: null) {
+  display: flex;
+  @if ($direction == null or $direction == x) {
+    justify-content: center;
+  }
+  @if ($direction == null or $direction == y) {
+    align-items: center;
+  }
+}

@@ -1,0 +1,54 @@
+@forward 'constants';
+@forward 'themes';
+
+@use 'mixins/animation' as animation;
+@use 'mixins/media.query' as mediaQuery;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: hsl(var(--text-color));
+  font-family: var(--font-family);
+
+  // Animation when theme is changed
+  @include animation.transition-smooth(color, background-color);
+
+  ::selection {
+    --background-color: var(--primary-h) var(--primary-s) calc(var(--primary-l) + 13%);
+
+    color: hsl(var(--white));
+    background-color: hsl(var(--background-color));
+  }
+}
+
+body {
+  background-color: hsl(var(--background-color));
+
+  // &::-webkit-scrollbar {
+  //   width: 0.3em;
+  // }
+
+  // &::-webkit-scrollbar-track {
+  //   box-shadow: inset 0 0 6px hsl(var(--background-color));
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   border-radius: 0.5em;
+  //   background-color: hsl(var(--primary));
+  //   outline: 1px solid hsl(var(--primary));
+  // }
+
+  #app {
+    height: 5000vh;
+  }
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+picture {
+  max-width: 100%;
+}

@@ -1,0 +1,41 @@
+$gray-scale: (
+  'gray-100': 96%,
+  'gray-200': 93%,
+  'gray-300': 88%,
+  'gray-400': 74%,
+  'gray-500': 62%,
+  'gray-600': 46%,
+  'gray-700': 38%,
+  'gray-800': 26%,
+  'gray-900': 13%,
+) !default;
+
+:root {
+  --primary-h: 5;
+  --primary-s: 97%;
+  --primary-l: 30%;
+  --primary: var(--primary-h) var(--primary-s) var(--primary-l);
+
+  --white-h: 0;
+  --white-s: 0%;
+  --white-l: 100%;
+  --white: var(--white-h) var(--white-s) var(--white-l);
+
+  --black-h: 0;
+  --black-s: 0%;
+  --black-l: 7%;
+  --black: var(--black-h) var(--black-s) var(--black-l);
+
+  --gray-h: 0;
+  --gray-s: 0%;
+
+  --google-h: 5;
+  --google-s: 70%;
+  --google-l: 57%;
+  --google: var(--google-h) var(--google-s) var(--google-l);
+
+  @each $name, $lightness in $gray-scale {
+    --#{$name}-l: #{$lightness};
+    --#{$name}: var(--gray-h) var(--gray-s) var(--#{$name}-l);
+  }
+}

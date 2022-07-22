@@ -1,0 +1,19 @@
+@use './theme' as theme;
+@use './animation' as animation;
+
+@mixin form-input {
+  border: none;
+  padding: 0.5em;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.6em;
+  outline: 1px solid hsl(var(--text-color));
+  background-color: hsl(var(--background-color));
+
+  @include animation.transition-smooth(outline, box-shadow, background-color);
+
+  &:focus {
+    outline: 2px solid hsl(var(--primary));
+    box-shadow: 0px 0px 6px 4px hsl(var(--primary));
+  }
+}

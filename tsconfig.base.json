@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mono-repo/components": ["libs/components/src/index.ts"]
+      "@mono-repo/blog/*": ["apps/blog/src/*"],
+      "@mono-repo/components": ["libs/components/src/index.ts"],
+      "@mono-repo/hooks": ["libs/hooks/src/index.ts"],
+      "@mono-repo/services": ["libs/services/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

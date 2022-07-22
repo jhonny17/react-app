@@ -1,0 +1,40 @@
+$phone-breakpoint: 0 !default;
+$tablet-breakpoint: 768px !default;
+$monitor-breakpoint: 1280px !default;
+$ultra-wide-breakpoint: 1921px !default;
+
+@mixin print {
+  @media only print {
+    @content;
+  }
+}
+
+@mixin screen($min-width) {
+  @media only screen and (min-width: $min-width) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @include screen($phone-breakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include screen($tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin monitor {
+  @include screen($monitor-breakpoint) {
+    @content;
+  }
+}
+
+@mixin ultra-wide {
+  @include screen($ultra-wide-breakpoint) {
+    @content;
+  }
+}
