@@ -1,8 +1,11 @@
 {
   "cSpell.words": [
+    "cssmodule",
     "devkit",
     "firestore",
     "nrwl",
-    "svgr"
-  ]
+    "svgr",
+    "testid"
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

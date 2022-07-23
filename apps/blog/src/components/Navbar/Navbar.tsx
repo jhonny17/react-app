@@ -8,7 +8,11 @@ type NavbarProps = {
 };
 
 const Navbar = ({ navbarRef }: NavbarProps) => (
-  <nav className={navbarClassName} data-testid={'primary-navbar'} ref={navbarRef}>
+  <nav
+    className={navbarClassName}
+    data-testid={'primary-navbar'}
+    ref={navbarRef}
+  >
     <div>Brand</div>
   </nav>
 );
